@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function About() {
   return (
     <section
@@ -16,7 +18,7 @@ export default function About() {
             streamline operations, ensure compliance, and grow with confidence.
           </p>
           <p className="text-gray-700 mb-4">
-            Whether it’s full-scale software implementation, monthly financial
+            Whether it&rsquo;s full-scale software implementation, monthly financial
             supervision, or bundled solutions — we bring expertise, clarity, and
             results to your business.
           </p>
@@ -29,10 +31,13 @@ export default function About() {
 
         {/* Image */}
         <div className="rounded-xl overflow-hidden shadow-lg">
-          <img
+          <Image
             src="/about-placeholder.jpg"
             alt="About Ascend Fintech Team"
+            width={500}
+            height={400}
             className="w-full h-auto object-cover"
+            unoptimized
           />
         </div>
       </div>

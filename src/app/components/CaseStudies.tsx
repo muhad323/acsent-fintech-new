@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 const caseStudies = [
   {
@@ -7,7 +8,7 @@ const caseStudies = [
       "Implemented a fully automated accounting and VAT compliance system for a multi-branch retail chain across Dubai.",
     client: "Retail Corp UAE",
     industry: "Retail",
-    image: "/case-study1.jpg", // Place dummy images in public folder or use placeholders
+    image: "/case-study1.jpg",
   },
   {
     title: "Custom ERP Integration for Manufacturing Firm",
@@ -36,7 +37,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-8">Case Studies</h2>
         <p className="mb-12 max-w-2xl mx-auto text-gray-600">
-          Explore how we’ve helped businesses across industries succeed with our tailored software and accounting solutions.
+          Explore how we&apos;ve helped businesses across industries succeed with our tailored software and accounting solutions.
         </p>
 
         <div className="grid md:grid-cols-3 gap-10">
@@ -45,9 +46,11 @@ export default function CaseStudies() {
               key={i}
               className="rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-2xl transition"
             >
-              <img
+              <Image
                 src={caseStudy.image}
                 alt={caseStudy.title}
+                width={600}
+                height={300}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6 text-left">

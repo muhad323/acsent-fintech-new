@@ -5,7 +5,7 @@ const testimonials = [
     name: "Ayesha Rahman",
     role: "CEO, BrightTech UAE",
     quote:
-      "Ascend Fintech transformed our accounting process and implemented the perfect software solution. We’re saving hours every week!",
+      "Ascend Fintech transformed our accounting process and implemented the perfect software solution. We&rsquo;re saving hours every week!",
   },
   {
     name: "Mohammed Saeed",
@@ -30,7 +30,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-          We’re proud to support businesses across the UAE. Here's what a few of our clients have to say about working with us.
+          We&rsquo;re proud to support businesses across the UAE. Here&rsquo;s what a few of our clients have to say about working with us.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -39,7 +39,9 @@ export default function Testimonials() {
               key={i}
               className="bg-[#f9fafb] border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-lg transition"
             >
-              <p className="text-sm text-gray-700 italic mb-4">"{t.quote}"</p>
+              <p className="text-sm text-gray-700 italic mb-4">
+                &ldquo;{t.quote}&rdquo;
+              </p>
               <h4 className="font-semibold text-lg">{t.name}</h4>
               <span className="text-gray-500 text-sm">{t.role}</span>
             </div>
