@@ -1,5 +1,6 @@
 'use client';
 
+import React from "react";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Facebook, Twitter, Linkedin, Mail, Phone } from 'lucide-react';
@@ -14,17 +15,19 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const scrollTo = (e: any, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const yOffset = -90;
-        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
+
+const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith("#")) {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const yOffset = -80; // or -90 in Footer
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
-  };
+  }
+};
+
 
   return (
     <motion.footer

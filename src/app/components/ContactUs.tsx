@@ -17,27 +17,34 @@ export default function ContactUs() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
+    setStatus("sending");
 
-  const res = await fetch("/api", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    }),
-  });
+    try {
+      const res = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-  const data = await res.json();
-  if (data.success) {
-    alert("Message sent successfully!");
-  } else {
-    alert("Something went wrong.");
-  }
-};
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" }); // clear form
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   const whatsappNumber = "971544589936";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;

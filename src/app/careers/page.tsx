@@ -1,7 +1,7 @@
 "use client";
 
-import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
 export default function CareerPage() {
   return (
@@ -17,15 +17,14 @@ export default function CareerPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-[#0a2540] mb-5 tracking-tight">
             Join Our Team
           </h1>
-          <p className="text-lg text-gray-600 mb-4">
-            We're always excited to meet innovative minds.
-          </p>
+          <p>We&apos;re hiring</p> 
+
           <p className="text-md text-gray-500">
-            Although we don’t have open roles at the moment, feel free to reach
-            out or check back soon. Stay connected through our Contact page!
+            Although we do not have open roles at the moment, feel free to reach out or check back soon. Stay connected through our Contact page!
           </p>
         </motion.div>
       </main>
     </>
   );
 }
+// --- IGNORE ---

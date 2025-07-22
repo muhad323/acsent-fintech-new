@@ -25,18 +25,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollTo = (e: any, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const yOffset = -80;
-        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-      setIsOpen(false);
+
+const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith("#")) {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const yOffset = -80; // or -90 in Footer
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
-  };
+  }
+};
+
 
   return (
     <motion.header

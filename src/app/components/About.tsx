@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function About() {
   return (
@@ -45,12 +46,10 @@ export default function About() {
           viewport={{ once: true }}
           className="relative w-full h-[600px] rounded-xl overflow-hidden shadow-2xl"
         >
-          <img
+          <Image
             src="/about-pic.jpg"
             alt="Ascend Fintech office view"
-            className="absolute top-0 left-0 w-full h-full object-cover"
-            loading="lazy"
-            draggable={false}
+           width={100} height={100}
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-[#0a2540]/70 to-black/20 pointer-events-none" />
         </motion.div>
