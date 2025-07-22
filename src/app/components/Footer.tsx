@@ -1,87 +1,118 @@
-"use client";
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Facebook, Twitter, Linkedin, Mail, Phone } from 'lucide-react';
+
+const footerLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '#services' },
+  { name: 'About', href: '#about' },
+  { name: 'Careers', href: '/careers' },
+  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'Contact', href: '#contact' },
+];
 
 export default function Footer() {
+  const scrollTo = (e: any, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const yOffset = -90;
+        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <footer className="bg-[#0a2540] text-white py-10 px-6 md:px-10 lg:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-6 md:mb-0 font-bold text-2xl">
-          Ascend Fintech LLC
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="w-full bg-[#0a0a0a] text-gray-300 py-16 px-4 sm:px-8 lg:px-20"
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Logo & About */}
+        <div>
+          <h2 className="text-white text-3xl font-bold mb-4 tracking-wide">
+            Ascend Fintech
+          </h2>
+          <p className="text-gray-400 text-base leading-relaxed">
+            Pioneering intelligent solutions for a smarter digital financial future.
+            Connect with us to transform your business with technology and insight.
+          </p>
         </div>
 
-        <nav className="flex space-x-6 mb-6 md:mb-0">
-          <a href="#home" className="hover:underline">
-            Home
-          </a>
-          <a href="#services" className="hover:underline">
-            Services
-          </a>
-          <a href="#about" className="hover:underline">
-            About Us
-          </a>
-          <a href="#case-studies" className="hover:underline">
-            Case Studies
-          </a>
-          <a href="#contact" className="hover:underline">
-            Contact
-          </a>
+        {/* Navigation */}
+        <nav aria-label="Footer Navigation">
+          <h3 className="text-white font-semibold text-xl mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            {footerLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  onClick={(e) => scrollTo(e, link.href)}
+                  className="hover:text-amber-400 transition"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        <div className="flex space-x-6">
-          {/* Social Icons */}
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-amber-400 transition"
-          >
-            <svg
-              fill="currentColor"
-              stroke="none"
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
+        {/* Contact & Social */}
+        <div>
+          <h3 className="text-white font-semibold text-xl mb-4">Contact</h3>
+          <div className="space-y-3 text-sm">
+            <p className="flex items-center gap-2">
+              <Mail size={18} />
+              <a href="mailto:info@ascendfintech.com" className="hover:text-amber-400 transition">
+                info@ascendfintech.com
+              </a>
+            </p>
+            <p className="flex items-center gap-2">
+              <Phone size={18} />
+              <a href="tel:+971544589936" className="hover:text-amber-400 transition">
+                +971 54 458 9936
+              </a>
+            </p>
+          </div>
+
+          <div className="flex gap-6 mt-6">
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              aria-label="Facebook"
+              className="hover:text-blue-600 transition"
             >
-              <path d="M4.98 3.5C3.33 3.5 2 4.83 2 6.48c0 1.65 1.33 2.98 2.98 2.98 1.65 0 2.98-1.33 2.98-2.98 0-1.65-1.33-2.98-2.98-2.98zM2 21.5h6v-12h-6v12zm7.5-7.8c0-.55.45-1 1-1h.02c.55 0 1 .45 1 1v7.2h-2v-7.2zm10-1.2c-2.48 0-4.5 2.02-4.5 4.5v5h3v-5c0-.28.22-.5.5-.5s.5.22.5.5v5h3v-5c0-2.48-2.02-4.5-4.5-4.5z" />
-            </svg>
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-            className="hover:text-amber-400 transition"
-          >
-            <svg
-              fill="currentColor"
-              stroke="none"
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
+              <Facebook size={24} />
+            </Link>
+            <Link
+              href="https://twitter.com"
+              target="_blank"
+              aria-label="Twitter"
+              className="hover:text-sky-400 transition"
             >
-              <path d="M23 3a10.9 10.9 0 01-3.14.86 4.48 4.48 0 001.98-2.48 9.12 9.12 0 01-2.9 1.12 4.52 4.52 0 00-7.69 4.12A12.81 12.81 0 013 4.88a4.48 4.48 0 001.4 6.04 4.52 4.52 0 01-2.05-.56v.05a4.52 4.52 0 003.6 4.43 4.56 4.56 0 01-2.04.08 4.53 4.53 0 004.22 3.15 9.06 9.06 0 01-5.6 1.94A8.93 8.93 0 012 19.53a12.74 12.74 0 006.92 2.03c8.3 0 12.84-6.87 12.84-12.83 0-.2 0-.42-.02-.63A9.22 9.22 0 0023 3z" />
-            </svg>
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            className="hover:text-amber-400 transition"
-          >
-            <svg
-              fill="currentColor"
-              stroke="none"
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
+              <Twitter size={24} />
+            </Link>
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              aria-label="LinkedIn"
+              className="hover:text-blue-500 transition"
             >
-              <path d="M22 12a10 10 0 10-11.54 9.87v-6.98H8.08v-2.89h2.38V9.75c0-2.36 1.4-3.67 3.56-3.67 1.03 0 2.1.18 2.1.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.76h2.6l-.42 2.89h-2.18v6.98A10 10 0 0022 12z" />
-            </svg>
-          </a>
+              <Linkedin size={24} />
+            </Link>
+          </div>
         </div>
       </div>
 
-      <div className="text-center text-gray-400 text-sm mt-8">
+      <div className="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} Ascend Fintech LLC. All rights reserved.
       </div>
-    </footer>
+    </motion.footer>
   );
 }

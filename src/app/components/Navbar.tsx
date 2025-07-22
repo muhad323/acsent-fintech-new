@@ -1,113 +1,111 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const NAV_BG = "bg-[#0a2540]";
-const NAV_TEXT = "text-white";
-const NAV_HOVER = "hover:text-amber-400";
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '#services' },
+  { name: 'About', href: '#about' },
+  { name: 'Careers', href: '/careers' },
+  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'Contact', href: '#contact' },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Use internal section IDs here for smooth scrolling
-  const menuItems = [
-    { name: "Home", href: "#hero" },
-    { name: "Services", href: "#services" },
-    { name: "About Us", href: "#about" },
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact Us", href: "#contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  // Smooth scroll handler with offset for fixed navbar
-  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    e.preventDefault();
-    const targetId = e.currentTarget.getAttribute("href")?.substring(1);
-    if (!targetId) return;
-
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const yOffset = -64; // Adjust based on navbar height (e.g. 64px)
-      const y =
-        targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({ top: y, behavior: "smooth" });
-      setIsOpen(false); // Close mobile menu on click
+  const scrollTo = (e: any, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const yOffset = -80;
+        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      setIsOpen(false);
     }
-  }
+  };
 
   return (
-    <nav className={`${NAV_BG} ${NAV_TEXT} fixed w-full z-50`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 flex items-center justify-between h-16">
-        {/* Logo */}
-        <a
-          href="#home"
-          onClick={handleNavClick}
-          className="flex items-center cursor-pointer select-none"
-        >
-          <Image src="/logo.jpg" alt="Ascend Fintech LLC Logo" width={40} height={40} />
-          <span className="ml-3 text-2xl font-semibold tracking-wide">
-            Ascend Fintech LLC
-          </span>
-        </a>
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/80 shadow backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-3">
+          <Image
+            src="/logo.jpg"
+            alt="Ascend Fintech Logo"
+            width={48}
+            height={48}
+            className="rounded-full shadow"
+          />
+          <span className="text-2xl font-bold text-gray-800">Ascend Fintech</span>
+        </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 font-medium">
-          {menuItems.map(({ name, href }) => (
-            <li key={name}>
-              <a
-                href={href}
-                onClick={handleNavClick}
-                className={`transition-colors duration-300 ${NAV_HOVER}`}
-              >
-                {name}
-              </a>
-            </li>
+        <nav className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => scrollTo(e, link.href)}
+              className="text-gray-700 text-base font-medium hover:text-blue-600 transition-colors"
+            >
+              {link.name}
+            </a>
           ))}
-        </ul>
+        </nav>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu Toggle */}
         <button
-          aria-label="Toggle menu"
-          className="md:hidden focus:outline-none"
+          className="md:hidden text-gray-800"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {isOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className={`${NAV_BG} md:hidden`}>
-          <ul className="flex flex-col px-6 py-4 space-y-4 font-medium">
-            {menuItems.map(({ name, href }) => (
-              <li key={name}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-white px-6 pb-6 rounded-b-xl shadow"
+          >
+            <div className="flex flex-col space-y-4 mt-4">
+              {navLinks.map((link) => (
                 <a
-                  href={href}
-                  onClick={handleNavClick}
-                  className={`block ${NAV_HOVER}`}
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => scrollTo(e, link.href)}
+                  className="text-base text-gray-700 font-medium hover:text-blue-600"
                 >
-                  {name}
+                  {link.name}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </nav>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
