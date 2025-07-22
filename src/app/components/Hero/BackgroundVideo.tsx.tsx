@@ -1,4 +1,3 @@
-// components/Hero/BackgroundVideo.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -13,7 +12,7 @@ export default function BackgroundVideo({ onLoop }: { onLoop: () => void }) {
 
     const handleEnded = () => {
       onLoop();
-      video.play(); // Replay the video manually to simulate looping
+      video.play();
     };
 
     video.addEventListener("ended", handleEnded);

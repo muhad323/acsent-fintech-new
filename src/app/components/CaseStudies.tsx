@@ -33,36 +33,35 @@ export default function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="bg-gray-50 py-20 px-6 md:px-12 lg:px-24 text-[#0a2540]"
+      className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-20 text-[#0a2540]"
     >
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">Case Studies</h2>
-        <p className="mb-12 max-w-2xl mx-auto text-gray-600">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4">Case Studies</h2>
+        <p className="mb-10 max-w-2xl mx-auto text-gray-600 text-sm sm:text-base">
           Real success stories of how we’ve helped businesses streamline operations, meet compliance, and grow.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {caseStudies.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group"
+              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col"
             >
-              <div className="overflow-hidden">
+              <div className="relative w-full h-52 overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
-                  width={400}
-                  height={250}
-                  className="w-full h-52 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-300"
                   unoptimized
                 />
               </div>
-              <div className="p-5 text-left">
-                <h3 className="text-xl font-semibold mb-2 text-[#0a2540]">
+              <div className="p-5 text-left flex-1 flex flex-col">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">{item.description}</p>
-                <div className="text-sm text-gray-500">
+                <p className="text-gray-600 text-sm mb-4 flex-1">{item.description}</p>
+                <div className="text-sm text-gray-500 space-y-1">
                   <p><span className="font-medium">Client:</span> {item.client}</p>
                   <p><span className="font-medium">Industry:</span> {item.industry}</p>
                 </div>

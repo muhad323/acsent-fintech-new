@@ -22,7 +22,6 @@ const testimonials = [
     quote:
       "Ecofab automated inventory and financial operations with our ERP and accounting bundle, reducing stock-outs by 80%, securing audit-ready books, and achieving total visibility into costs to drive confident expansion.",
   },
-  // 3 dummy testimonials
   {
     name: "GlobalTech Solutions",
     role: "",
@@ -43,7 +42,6 @@ const testimonials = [
   },
 ];
 
-// Helper to wrap index in range [0, length)
 const mod = (n: number, length: number) => ((n % length) + length) % length;
 
 export default function Testimonials() {
@@ -57,41 +55,32 @@ export default function Testimonials() {
     setActiveIndex((i) => mod(i + 1, testimonials.length));
   };
 
-  // Fixed width for the carousel container and cards
   return (
     <section
       id="testimonials"
-      className="bg-gradient-to-tr from-white-100 to-gray-50 py-24 px-6 md:px-10 lg:px-20 text-[#0a2540]"
+      className="bg-gradient-to-tr from-white to-gray-50 py-20 px-4 sm:px-8 lg:px-20 text-[#0a2540]"
     >
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-extrabold mb-6">What Our Clients Say</h2>
-        <p className="text-gray-700 max-w-4xl mx-auto text-lg leading-relaxed">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-6">
+          What Our Clients Say
+        </h2>
+        <p className="text-gray-700 max-w-3xl mx-auto text-base sm:text-lg">
           We’re proud to support businesses across the UAE. Here’s what a few of our clients have to say about working with us.
         </p>
       </div>
 
-      <div
-        className="relative flex justify-center items-center mx-auto"
-        style={{
-          width: "960px", // 3 cards * 320px each
-          minHeight: "420px",
-          maxWidth: "100%",
-        }}
-      >
-        {/* Previous Card */}
+      <div className="flex flex-wrap justify-center gap-6 items-stretch">
         <Card
           testimonial={testimonials[mod(activeIndex - 1, testimonials.length)]}
           position="left"
           onClick={prev}
         />
-        {/* Active Card */}
         <Card
           testimonial={testimonials[activeIndex]}
           position="center"
           onClick={() => {}}
           isActive
         />
-        {/* Next Card */}
         <Card
           testimonial={testimonials[mod(activeIndex + 1, testimonials.length)]}
           position="right"
@@ -99,8 +88,7 @@ export default function Testimonials() {
         />
       </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-center mt-12 gap-6">
+      <div className="flex justify-center mt-10 gap-6">
         <button
           onClick={prev}
           aria-label="Previous testimonial"
@@ -131,50 +119,40 @@ function Card({
   onClick: () => void;
   isActive?: boolean;
 }) {
-  // Fixed width for each card
-  const baseStyle =
-    "cursor-pointer rounded-3xl bg-white bg-opacity-80 border border-gray-300 shadow-lg p-10 w-[280px] md:w-[320px] flex-shrink-0";
-
-  let transformStyle = "";
-  let scale = 0.8;
+  let scale = 0.95;
   let zIndex = 10;
-  let opacity = 0.6;
+  let opacity = 0.8;
 
   if (position === "center") {
     scale = 1;
     zIndex = 20;
     opacity = 1;
-    transformStyle = "translateY(-20px)";
-  } else if (position === "left") {
-    transformStyle = "translateX(-50px) rotateY(15deg)";
-  } else if (position === "right") {
-    transformStyle = "translateX(50px) rotateY(-15deg)";
   }
 
   return (
     <motion.div
       onClick={onClick}
-      className={baseStyle}
+      className="bg-white border border-gray-300 rounded-3xl shadow-lg p-6 sm:p-8 w-full sm:w-[280px] md:w-[320px] transition-all duration-500 cursor-pointer"
       style={{
         scale,
         zIndex,
         opacity,
-        boxShadow: isActive ? "0 20px 30px rgba(0,0,0,0.3)" : undefined,
-        transform: transformStyle,
-        transition: "transform 0.5s ease, scale 0.5s ease",
       }}
       whileHover={{
         scale: 1.05,
-        boxShadow: "0 25px 35px rgba(0,0,0,0.35)",
-        y: -10,
+        y: -8,
+        boxShadow: "0 25px 35px rgba(0,0,0,0.25)",
       }}
-      transition={{ duration: 0.5 }}
     >
-      <>
-        <p className="italic text-lg mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
-        <h4 className="font-semibold text-xl">{testimonial.name}</h4>
-      </>
-      {testimonial.role && <p className="text-gray-500">{testimonial.role}</p>}
+      <p className="italic text-base sm:text-lg mb-6 leading-relaxed">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+      <h4 className="font-semibold text-lg sm:text-xl">
+        {testimonial.name}
+      </h4>
+      {testimonial.role && (
+        <p className="text-gray-500 text-sm mt-1">{testimonial.role}</p>
+      )}
     </motion.div>
   );
 }

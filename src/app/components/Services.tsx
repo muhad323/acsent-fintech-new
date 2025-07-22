@@ -32,25 +32,33 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-gradient-to-tr from-blue-50 to-gray-100 py-20 px-6 md:px-10 lg:px-20">
+    <section
+      id="services"
+      className="bg-gradient-to-tr from-blue-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-20"
+    >
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-extrabold text-[#0a2540] mb-6">Our Services</h2>
-        <p className="text-gray-700 max-w-3xl mx-auto mb-14 text-lg leading-relaxed">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a2540] mb-6">
+          Our Services
+        </h2>
+        <p className="text-gray-700 max-w-3xl mx-auto mb-12 text-base sm:text-lg leading-relaxed">
           Ascend Fintech LLC offers a range of expert financial, accounting, and software services tailored to help your business thrive in the UAE.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {services.map(({ title, description, icon }, index) => (
-            <div key={index} className="relative bg-white bg-opacity-60 border border-gray-300 rounded-2xl p-8 shadow-md overflow-hidden cursor-pointer
-              transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl">
-              
-              {/* Liquid hover effect */}
+            <div
+              key={index}
+              className="relative bg-white bg-opacity-70 border border-gray-300 rounded-2xl p-6 sm:p-8 shadow-md transition-transform duration-500 hover:scale-[1.03] hover:shadow-xl"
+            >
+              {/* Hover blob */}
               <span className="absolute -top-20 -left-20 w-60 h-60 bg-indigo-400 rounded-full opacity-0 blur-3xl transition-opacity duration-700 hover:opacity-70 pointer-events-none"></span>
 
-              <div className="relative z-10">
-                <div className="text-5xl mb-6">{icon}</div>
-                <h3 className="text-2xl font-semibold text-[#0a2540] mb-4">{title}</h3>
-                <p className="text-gray-700 text-base leading-relaxed">{description}</p>
+              <div className="relative z-10 text-left sm:text-center">
+                <div className="text-4xl sm:text-5xl mb-4">{icon}</div>
+                <h3 className="text-xl sm:text-2xl font-semibold text-[#0a2540] mb-3">{title}</h3>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  {description}
+                </p>
               </div>
             </div>
           ))}

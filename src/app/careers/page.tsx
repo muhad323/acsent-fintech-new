@@ -14,17 +14,20 @@ export default function CareerPage() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-3xl mx-auto bg-white rounded-3xl shadow-lg border border-blue-100 p-10 text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-[#0a2540] mb-5 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#0a2540] mb-4 tracking-tight">
             Join Our Team
           </h1>
-          <p>We&apos;re hiring</p> 
 
-          <p className="text-md text-gray-500">
-            Although we do not have open roles at the moment, feel free to reach out or check back soon. Stay connected through our Contact page!
+          <p className="text-lg text-blue-600 font-medium mb-2">
+            We’re hiring!
+          </p>
+
+          <p className="text-md text-gray-600 leading-relaxed">
+            While there are no open roles currently, we encourage you to stay connected and check back soon.
+            In the meantime, feel free to reach out to us via our <a href="/contact" className="text-blue-500 underline">Contact page</a>.
           </p>
         </motion.div>
       </main>
     </>
   );
 }
-// --- IGNORE ---

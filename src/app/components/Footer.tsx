@@ -15,19 +15,17 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-
-const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-  if (href.startsWith("#")) {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      const yOffset = -80; // or -90 in Footer
-      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+  const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const yOffset = -80;
+        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
     }
-  }
-};
-
+  };
 
   return (
     <motion.footer
@@ -36,10 +34,10 @@ const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       transition={{ delay: 0.2 }}
       className="w-full bg-[#0a0a0a] text-gray-300 py-16 px-4 sm:px-8 lg:px-20"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
         {/* Logo & About */}
         <div>
-          <h2 className="text-white text-3xl font-bold mb-4 tracking-wide">
+          <h2 className="text-white text-2xl sm:text-3xl font-bold mb-4 tracking-wide">
             Ascend Fintech
           </h2>
           <p className="text-gray-400 text-base leading-relaxed">
@@ -72,13 +70,19 @@ const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
           <div className="space-y-3 text-sm">
             <p className="flex items-center gap-2">
               <Mail size={18} />
-              <a href="mailto:info@ascendfintech.com" className="hover:text-amber-400 transition">
+              <a
+                href="mailto:info@ascendfintech.com"
+                className="hover:text-amber-400 transition"
+              >
                 info@ascendfintech.com
               </a>
             </p>
             <p className="flex items-center gap-2">
               <Phone size={18} />
-              <a href="tel:+971544589936" className="hover:text-amber-400 transition">
+              <a
+                href="tel:+971544589936"
+                className="hover:text-amber-400 transition"
+              >
                 +971 54 458 9936
               </a>
             </p>
@@ -113,6 +117,7 @@ const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         </div>
       </div>
 
+      {/* Bottom copyright */}
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} Ascend Fintech LLC. All rights reserved.
       </div>

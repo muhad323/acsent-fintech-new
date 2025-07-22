@@ -24,10 +24,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-background)] text-[var(--color-foreground)] transition-colors duration-300`}
       >
-        <main className="min-h-screen w-full flex flex-col items-center justify-between">
+        <main className="min-h-screen w-full flex flex-col">
           {children}
         </main>
       </body>

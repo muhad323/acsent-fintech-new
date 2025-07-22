@@ -11,7 +11,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 4000); // Show content after 5 seconds
+    }, 4000); // Show content after 4 seconds
 
     return () => clearTimeout(timer);
   }, []);
@@ -20,8 +20,12 @@ export default function Hero() {
     <section className={styles.hero}>
       <BackgroundVideo onLoop={() => {}} />
 
-      {/* Optional overlay fade effect */}
-      <div className={`${styles.overlay} ${showContent ? styles.fadeInBlack : ""}`} />
+      {/* Overlay */}
+      <div
+        className={`${styles.overlay} ${
+          showContent ? styles.fadeInBlack : ""
+        }`}
+      />
 
       {showContent && (
         <motion.div
@@ -31,16 +35,22 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <h1 className={styles.title}>
-            Digitally Transform the Business with Technology and Finance Management.
+            Digitally Transform the Business with Technology and Finance
+            Management.
           </h1>
           <p className={styles.subtitle}>
-            Ascend provides expert solutions for managing the finance and technology
-            automation of workflows within your business. We help businesses achieve
-            the next level of growth with operational efficiency and automation.
+            Ascend provides expert solutions for managing the finance and
+            technology automation of workflows within your business. We help
+            businesses achieve the next level of growth with operational
+            efficiency and automation.
           </p>
           <div className={styles.buttons}>
-            <a href="#contact" className={styles.primaryBtn}>Get a Quote</a>
-            <a href="#services" className={styles.secondaryBtn}>Learn More</a>
+            <a href="#contact" className={styles.primaryBtn}>
+              Get a Quote
+            </a>
+            <a href="#services" className={styles.secondaryBtn}>
+              Learn More
+            </a>
           </div>
         </motion.div>
       )}
