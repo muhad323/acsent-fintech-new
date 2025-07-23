@@ -206,16 +206,16 @@ export default function ContactUs() {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className=" rounded-full shadow-xl hover:bg-green-600 transition"
+          className=" rounded-full shadow-xl hover:bg-green-600 transition transform translate-x-2"
           aria-label="Chat with us on WhatsApp"
         >
           <img
-            src="Whatsapp.png"
+            src="/Whatsapp.png"
             alt="Chat on WhatsApp"
             className="w-12 h-12"
           />
         </a>
-        <span className="text-sm text-black bg-white-500 px-3 py-1 rounded-full shadow-md">
+        <span className="text-sm text-black bg-white-500 px-1 py-1 rounded-full shadow-md">
           Chat With Us
         </span>
       </div>
