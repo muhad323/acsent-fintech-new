@@ -91,14 +91,14 @@ export default function Testimonials() {
         <button
           onClick={prev}
           aria-label="Previous testimonial"
-          className="bg-indigo-600 text-white rounded-full p-4 hover:bg-indigo-700 transition"
+          className="bg-gray-600 text-white rounded-full p-4 hover:bg-gray-700 transition"
         >
           ‹
         </button>
         <button
           onClick={next}
           aria-label="Next testimonial"
-          className="bg-indigo-600 text-white rounded-full p-4 hover:bg-indigo-700 transition"
+          className="bg-gray-600 text-white rounded-full p-4 hover:bg-gray-700 transition"
         >
           ›
         </button>
