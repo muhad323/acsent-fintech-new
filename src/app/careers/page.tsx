@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import Link from "next/link"; // ✅ FIXED: Import next/link
 
 export default function CareerPage() {
   return (
@@ -24,7 +25,8 @@ export default function CareerPage() {
 
           <p className="text-md text-gray-600 leading-relaxed">
             While there are no open roles currently, we encourage you to stay connected and check back soon.
-            In the meantime, feel free to reach out to us via our <a href="/contact" className="text-blue-500 underline">Contact page</a>.
+            In the meantime, feel free to reach out to us via our{" "}
+            <Link href="/" className="text-blue-500 underline">Contact page</Link>.
           </p>
         </motion.div>
       </main>

@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
 
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -18,35 +18,31 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
+    setStatus('sending');
 
     try {
-      const res = await fetch("/api", {
-        method: "POST",
+      const res = await fetch('/api/contact', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
+        body: JSON.stringify(formData),
       });
 
       const data = await res.json();
 
       if (data.success) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" }); // clear form
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
       } else {
-        setStatus("error");
+        setStatus('error');
       }
     } catch {
-      setStatus("error");
+      setStatus('error');
     }
   };
 
-  const whatsappNumber = "971544589936";
+  const whatsappNumber = '971544589936';
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (
@@ -55,7 +51,7 @@ export default function ContactUs() {
       className="bg-gray-100 py-20 px-6 md:px-12 lg:px-24 text-[#0a2540]"
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
-        {/* Left: Contact Form */}
+        {/* Left: Form */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -70,7 +66,9 @@ export default function ContactUs() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block mb-2 font-semibold text-gray-800">Name</label>
+              <label htmlFor="name" className="block mb-2 font-semibold text-gray-800">
+                Name
+              </label>
               <input
                 id="name"
                 name="name"
@@ -79,12 +77,14 @@ export default function ContactUs() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your full name"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block mb-2 font-semibold text-gray-800">Email</label>
+              <label htmlFor="email" className="block mb-2 font-semibold text-gray-800">
+                Email
+              </label>
               <input
                 id="email"
                 name="email"
@@ -93,12 +93,14 @@ export default function ContactUs() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your email address"
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block mb-2 font-semibold text-gray-800">Message</label>
+              <label htmlFor="message" className="block mb-2 font-semibold text-gray-800">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -107,33 +109,33 @@ export default function ContactUs() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Write your message here..."
-                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition resize-none"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none"
               />
             </div>
 
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === 'sending'}
               className={`w-full text-[#0a2540] font-semibold py-3 rounded-lg shadow-md transition 
-                ${status === "sending" ? "bg-amber-300 cursor-not-allowed" : "bg-amber-400 hover:bg-amber-500"}`}
+                ${status === 'sending' ? 'bg-amber-300 cursor-not-allowed' : 'bg-amber-400 hover:bg-amber-500'}`}
             >
-              {status === "sending" ? "Sending..." : "Send Message"}
+              {status === 'sending' ? 'Sending...' : 'Send Message'}
             </button>
 
-            {status === "success" && (
+            {status === 'success' && (
               <p className="mt-4 text-green-600 font-semibold text-center">
                 Message sent successfully!
               </p>
             )}
-            {status === "error" && (
+            {status === 'error' && (
               <p className="mt-4 text-red-600 font-semibold text-center">
-                Failed to send message. Try again.
+                Failed to send message. Please try again.
               </p>
             )}
           </form>
         </motion.div>
 
-        {/* Right: Contact Info */}
+        {/* Right: Info */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -150,7 +152,12 @@ export default function ContactUs() {
 
           <div>
             <h3 className="font-semibold mb-3 text-lg text-gray-900">Website</h3>
-            <a href="https://www.ascendfintech.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-words">
+            <a
+              href="https://www.ascendfintech.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline break-words"
+            >
               www.ascendfintech.com
             </a>
           </div>

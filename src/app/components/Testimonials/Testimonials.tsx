@@ -65,7 +65,7 @@ export default function Testimonials() {
           What Our Clients Say
         </h2>
         <p className="text-gray-700 max-w-3xl mx-auto text-base sm:text-lg">
-          We’re proud to support businesses across the UAE. Here’s what a few of our clients have to say about working with us.
+          We&apos;re proud to support businesses across the UAE. Here&apos;s what a few of our clients have to say about working with us.
         </p>
       </div>
 
@@ -79,7 +79,6 @@ export default function Testimonials() {
           testimonial={testimonials[activeIndex]}
           position="center"
           onClick={() => {}}
-          isActive
         />
         <Card
           testimonial={testimonials[mod(activeIndex + 1, testimonials.length)]}
@@ -112,12 +111,10 @@ function Card({
   testimonial,
   position,
   onClick,
-  isActive = false,
 }: {
   testimonial: { name: string; role: string; quote: string };
   position: "left" | "center" | "right";
   onClick: () => void;
-  isActive?: boolean;
 }) {
   let scale = 0.95;
   let zIndex = 10;

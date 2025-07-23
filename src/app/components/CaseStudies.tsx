@@ -45,7 +45,7 @@ export default function CaseStudies() {
           {caseStudies.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col"
+              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col"
             >
               <div className="relative w-full h-52 overflow-hidden">
                 <Image

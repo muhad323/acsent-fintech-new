@@ -11,7 +11,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 4000); // Show content after 4 seconds
+    }, 1000); // Show content after 1 seconds
 
     return () => clearTimeout(timer);
   }, []);

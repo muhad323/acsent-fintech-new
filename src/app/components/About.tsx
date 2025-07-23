@@ -30,7 +30,7 @@ export default function About() {
           </p>
 
           <p className="mb-5 text-base sm:text-lg leading-relaxed text-gray-700">
-            Whether you're a startup or a large enterprise, we help you navigate compliance, optimize tech investments, and unlock growth opportunities.
+            Whether you&apos;re a startup or a large enterprise, we help you navigate compliance, optimize tech investments, and unlock growth opportunities.
           </p>
 
           <p className="text-base sm:text-lg font-semibold text-[#0a2540]">
