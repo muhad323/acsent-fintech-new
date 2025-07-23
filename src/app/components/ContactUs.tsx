@@ -10,7 +10,9 @@ export default function ContactUs() {
     message: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -183,8 +185,10 @@ export default function ContactUs() {
             <div>
               <h3 className="text-lg font-semibold mb-1">Address</h3>
               <p className="text-base font-medium leading-relaxed">
-                SHAMS, Al Messaned,<br />
-                Al Bataeh, Sharjah,<br />
+                SHAMS, Al Messaned,
+                <br />
+                Al Bataeh, Sharjah,
+                <br />
                 United Arab Emirates.
               </p>
             </div>
@@ -202,19 +206,18 @@ export default function ContactUs() {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition"
+          className=" rounded-full shadow-xl hover:bg-green-600 transition"
           aria-label="Chat with us on WhatsApp"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M20.52 3.48a11.8 11.8 0 00-16.67 16.67l-1.72 5.9 6.07-1.6a11.8 11.8 0 0012.32-20.97zm-9.48 17.06a9.47 9.47 0 01-5.07-1.4l-.36-.22-3.02.8.8-3.01-.23-.37a9.52 9.52 0 1111.88 4.2 9.3 9.3 0 01-3 2.1z" />
-            <path d="M16.25 14.4l-1.3-.6a.36.36 0 00-.5.17l-.6 1.3a.68.68 0 01-.54.38 6.08 6.08 0 01-2.96-1.33 6.05 6.05 0 01-1.83-2.46.68.68 0 01.37-.9l1.29-.6a.36.36 0 00.17-.5l-.6-1.29a.68.68 0 01.38-.9 4.06 4.06 0 013.15-.27c.68.22 1.3.6 1.83 1.13a4.05 4.05 0 01.94 1.69 4.1 4.1 0 01-.27 3.15.68.68 0 01-.91.38z" />
-          </svg>
+          <img
+            src="Whatsapp.png"
+            alt="Chat on WhatsApp"
+            className="w-20 h-20"
+          />
         </a>
+        <span className="text-sm text-black bg-white-500 px-3 py-1 rounded-full shadow-md">
+          Chat With Us
+        </span>
       </div>
     </section>
   );
