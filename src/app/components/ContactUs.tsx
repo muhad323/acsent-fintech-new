@@ -212,7 +212,7 @@ export default function ContactUs() {
           <img
             src="Whatsapp.png"
             alt="Chat on WhatsApp"
-            className="w-20 h-20"
+            className="w-12 h-12"
           />
         </a>
         <span className="text-sm text-black bg-white-500 px-3 py-1 rounded-full shadow-md">
